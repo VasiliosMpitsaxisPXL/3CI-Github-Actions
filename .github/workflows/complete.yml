@@ -15,14 +15,9 @@ jobs:
           node-version: 20
       - name: install npm
         run: npm install
-      - name: Run unit tests and create report
-        run: |
-          npm test > test-results.txt
-      - name: Upload test report
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report
-          path: test-results.txt
+        
+      - name: Run unit tests with coverage
+        run: npm test -- --coverage
 
       - name: Bundle app & dependencies into zip
         run: |
@@ -30,4 +25,9 @@ jobs:
             -x "*.git*" \
             -x "*/.github/*" \
             -x "build.zip"
+            
+      - name: Better Test Reports
+        uses: mridang/action-test-reporter@v1.5.0
+        if: always()
+      
 
