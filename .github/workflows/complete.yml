@@ -26,8 +26,12 @@ jobs:
             -x "*/.github/*" \
             -x "build.zip"
             
-      - name: Better Test Reports
-        uses: mridang/action-test-reporter@v1.5.0
-        if: always()
-      
+      - name: Code Coverage Report
+        uses: mridang/action-test-reporter@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coverage-file: ./coverage/clover.xml
+          working-directory: .
+
+
 
