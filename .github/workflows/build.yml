@@ -15,8 +15,6 @@ jobs:
           node-version: 20
       - name: install npm
         run: npm install
-      - name: Build project
-        run: npm run build
       - name: Bundle app & dependencies into zip
         run: |
           zip -r build.zip . \
